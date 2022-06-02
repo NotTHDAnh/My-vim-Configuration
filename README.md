@@ -1,1 +1,1 @@
-# My-vim-Configuration
+Speed configuration gvim 
