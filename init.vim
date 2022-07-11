@@ -1,5 +1,15 @@
+"
+"█▀▄ ▄▀█ █▄░█ █▀▀   ▄▀█ █▄░█ █░█
+"█▄▀ █▀█ █░▀█ █▄█   █▀█ █░▀█ █▀█
+"
+"==================================
+
 call plug#begin('~/plugged')
 
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'preservim/nerdtree'
+Plug 'Erichain/vim-monokai-pro'
 Plug 'aluriak/nerdcommenter'
 Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -14,9 +24,10 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'preservim/nerdcommenter'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 
 call plug#end()
+
 
 syntax on
 
@@ -26,7 +37,8 @@ let mapleader = "-"
 let maplocalleader = "\\"
 
 "split navigations
-nnoremap <C-B> :w <bar> :!g++ -Wall % -o a <Cr> 
+nnoremap <C-B> :w <bar> :!g++ -Wall % -o a  && ./a<Cr> 
+nnoremap <C-Y> :%y+ <Cr>
 nnoremap <C-Q> :e ~/.config/nvim/init.vim <Cr>
 nnoremap <C-D> :e code/a.cpp <Cr>
 nnoremap <C-J> <C-W><C-J>
@@ -40,11 +52,6 @@ set splitright
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-"Enable folding with the spacebar
-nnoremap <space> za
-
-" open files with ctrl-p
-nnoremap <c-p> :Files<cr>
 
 au BufNewFile,BufRead *.py,*.java,*.cpp,*.c,*.cs,*.rkt,*.h,*.html
     \ set tabstop=4 |
@@ -58,8 +65,6 @@ au BufNewFile,BufRead *.py,*.java,*.cpp,*.c,*.cs,*.rkt,*.h,*.html
     \ set autoindent |
 
 set encoding=utf-8
-
-syntax on
 
 " air-line
 let g:airline_powerline_fonts = 1
@@ -91,6 +96,7 @@ let g:airline_symbols.linenr = ''
 
 highlight Comment cterm=italic gui=italic
 
+
 set laststatus=2
 set mouse=a
 " set showtabline=2
@@ -107,7 +113,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme onedark
+colorscheme catppuccin
 
 set nu rnu " relative line numbering
 set clipboard=unnamed " public copy/paste register
@@ -129,29 +135,7 @@ set showmatch "highlights matching brackets
 set incsearch "search as characters are entered
 set hlsearch "highlights matching searches
 
-"clears highlights
-nnoremap // :noh<return>
-" moves current line down or up
-nnoremap <leader>- ddp
-nnoremap <leader>_ ddkP
-" open vimrc in vertical split
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-" update changes into current buffer
-nnoremap <leader>sv :source $MYVIMRC<cr>
-" enable or disable line wrapping in current buffer
-nnoremap <buffer> <localleader>w :set wrap!<cr>
 
-" c++11 support in syntastic
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
+"Nerd tree
+nnoremap <f5> :NERDTreeToggle <Cr>
 
-
-" run code
-augroup compileandrun
-    autocmd!
-    autocmd filetype python nnoremap <f5> :w <bar> :!python3 % <cr>
-    autocmd filetype cpp nnoremap <f5> :w <bar> !g++ -std=c++11 % <cr> :vnew <bar> :te "a.exe" <cr><cr>
-    autocmd filetype cpp nnoremap <f6> :vnew <bar> :te "a.exe" <cr>
-    autocmd filetype c nnoremap <f5> :w <bar> !make %:r && ./%:r <cr>
-    autocmd filetype java nnoremap <f5> :w <bar> !javac % && java %:r <cr>
-augroup END
