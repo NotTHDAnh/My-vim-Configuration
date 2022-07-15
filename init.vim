@@ -6,14 +6,14 @@
 
 call plug#begin('~/plugged')
 
+Plug 'tpope/vim-commentary'
+Plug 'andweeb/presence.nvim'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'preservim/nerdtree'
 Plug 'Erichain/vim-monokai-pro'
 Plug 'aluriak/nerdcommenter'
 Plug 'joshdick/onedark.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
@@ -37,9 +37,9 @@ let mapleader = "-"
 let maplocalleader = "\\"
 
 "split navigations
-nnoremap <C-B> :w <bar> :!g++ -Wall % -o a  && ./a<Cr> 
+nnoremap <C-B> :w <bar> :!g++ -Wall % -o a <Cr> 
 nnoremap <C-Y> :%y+ <Cr>
-nnoremap <C-Q> :e ~/.config/nvim/init.vim <Cr>
+nnoremap <C-Q> :e ~/Appdata/Local/nvim/init.vim <Cr>
 nnoremap <C-D> :e code/a.cpp <Cr>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -96,6 +96,13 @@ let g:airline_symbols.linenr = ''
 
 highlight Comment cterm=italic gui=italic
 
+nnoremap ; :
+:command W w
+:command WQ wq
+:command Wq wq
+:command Q q
+:command Qa qa
+:command QA qa
 
 set laststatus=2
 set mouse=a
@@ -138,4 +145,3 @@ set hlsearch "highlights matching searches
 
 "Nerd tree
 nnoremap <f5> :NERDTreeToggle <Cr>
-
