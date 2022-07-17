@@ -40,6 +40,8 @@ let maplocalleader = "\\"
 nnoremap <C-B> :w <bar> :!g++ -Wall % -o a <Cr> 
 nnoremap <C-Y> :%y+ <Cr>
 nnoremap <C-Q> :e ~/Appdata/Local/nvim/init.vim <Cr>
+"for linux
+"nnoremap <C-Q> :e ~/.config/nvim/init.vim
 nnoremap <C-D> :e code/a.cpp <Cr>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
