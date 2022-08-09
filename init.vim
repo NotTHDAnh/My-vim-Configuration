@@ -6,7 +6,11 @@
 
 call plug#begin('~/plugged')
 
+"Plug '907th/vim-auto-save'
+Plug 'voldikss/vim-floaterm'
+"Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
+Plug 'honza/vim-snippets'
 Plug 'andweeb/presence.nvim'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
@@ -33,15 +37,19 @@ syntax on
 
 filetype plugin on
 
+if has("python3")
+    command! -nargs=1 Py py3 <args>
+else
+    command! -nargs=1 Py py <args>
+endif
+
 let mapleader = "-"
 let maplocalleader = "\\"
 
 "split navigations
-nnoremap <C-B> :w <bar> :!g++ -Wall % -o a <Cr> 
+nnoremap <C-B> :w <bar> :!g++ -Wall % -o a.exe <Cr>
 nnoremap <C-Y> :%y+ <Cr>
 nnoremap <C-Q> :e ~/Appdata/Local/nvim/init.vim <Cr>
-"for linux
-"nnoremap <C-Q> :e ~/.config/nvim/init.vim
 nnoremap <C-D> :e code/a.cpp <Cr>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -96,6 +104,9 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+"let g:auto_save = 1
+"let g:auto_save_silent = 1
+
 highlight Comment cterm=italic gui=italic
 
 nnoremap ; :
@@ -124,8 +135,9 @@ endif
 
 colorscheme catppuccin
 
+"autocmd TextChanged,TextChangedI <buffer> silent write
 set nu rnu " relative line numbering
-set clipboard=unnamed " public copy/paste register
+"set clipboard=unnamed " public copy/paste register
 set ruler
 set showcmd
 set noswapfile " doesn't create swap files
@@ -143,7 +155,6 @@ set lazyredraw "redraws the screne when it needs to
 set showmatch "highlights matching brackets
 set incsearch "search as characters are entered
 set hlsearch "highlights matching searches
-
 
 "Nerd tree
 nnoremap <f5> :NERDTreeToggle <Cr>
