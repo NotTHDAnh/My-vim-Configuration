@@ -1,33 +1,49 @@
-"
-"█▀▄ ▄▀█ █▄░█ █▀▀   ▄▀█ █▄░█ █░█
-"█▄▀ █▀█ █░▀█ █▄█   █▀█ █░▀█ █▀█
-"
-"==================================
+" ____                                 ______          __         
+"/\  _`\                              /\  _  \        /\ \        
+"\ \ \/\ \     __      ___      __    \ \ \L\ \    ___\ \ \___    
+" \ \ \ \ \  /'__`\  /' _ `\  /'_ `\   \ \  __ \ /' _ `\ \  _ `\  
+"  \ \ \_\ \/\ \L\.\_/\ \/\ \/\ \L\ \   \ \ \/\ \/\ \/\ \ \ \ \ \ 
+"   \ \____/\ \__/.\_\ \_\ \_\ \____ \   \ \_\ \_\ \_\ \_\ \_\ \_\
+"    \/___/  \/__/\/_/\/_/\/_/\/___L\ \   \/_/\/_/\/_/\/_/\/_/\/_/
+"                               /\____/                           
+"                               \_/__/                            
 
 call plug#begin('~/plugged')
 
 "Plug '907th/vim-auto-save'
+Plug 'edluffy/hologram.nvim'
+Plug 'lambdalisue/battery.vim'
+Plug 'safv12/andromeda.vim'
+Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'p00f/cphelper.nvim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'manuelschiller/vim'
+Plug 'Rigellute/shades-of-purple.vim'
+Plug 'stillwwater/vim-nebula'
 Plug 'voldikss/vim-floaterm'
-"Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'honza/vim-snippets'
 Plug 'andweeb/presence.nvim'
-Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'joshdick/onedark.vim'
+"Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'dracula/vim'
 Plug 'preservim/nerdtree'
 Plug 'Erichain/vim-monokai-pro'
-Plug 'aluriak/nerdcommenter'
-Plug 'joshdick/onedark.vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'Raimondi/delimitMate'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-syntastic/syntastic'
-Plug 'ryanoasis/vim-devicons'
+"Plug 'cj/vim-webdevicons'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tc50cal/vim-terminal'
+Plug 'Raimondi/delimitMate'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-surround'
 "Plug 'ervandew/supertab'
 
 call plug#end()
@@ -37,19 +53,13 @@ syntax on
 
 filetype plugin on
 
-if has("python3")
-    command! -nargs=1 Py py3 <args>
-else
-    command! -nargs=1 Py py <args>
-endif
-
 let mapleader = "-"
 let maplocalleader = "\\"
 
 "split navigations
-nnoremap <C-B> :w <bar> :!g++ -Wall % -o a.exe <Cr>
+nnoremap <C-B> :w <bar> :!g++ -Wall % -o a <Cr>
 nnoremap <C-Y> :%y+ <Cr>
-nnoremap <C-Q> :e ~/Appdata/Local/nvim/init.vim <Cr>
+nnoremap <C-Q> :e ~/.config/nvim/init.vim <Cr>
 nnoremap <C-D> :e code/a.cpp <Cr>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -74,18 +84,21 @@ au BufNewFile,BufRead *.py,*.java,*.cpp,*.c,*.cs,*.rkt,*.h,*.html
     \ set fileformat=unix |
     \ set autoindent |
 
-set encoding=utf-8
-
-" air-line
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'onedark'
-let g:airline#extensions#tabline#enabled = 1
+set encoding=UTF-8
 
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
+" air-line
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
 " unicode symbols
+let g:airline_left_sep = '◤'
+let g:airline_left_sep = '◤'
+let g:airline_right_sep = '◥'
+let g:airline_right_sep = '◥'
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
@@ -96,18 +109,13 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+let g:airline_left_sep = '◤'
+let g:airline_left_alt_sep = '◤'
+let g:airline_right_sep = '◥'
+let g:airline_right_alt_sep = '◥'
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-
-"let g:auto_save = 1
-"let g:auto_save_silent = 1
-
-highlight Comment cterm=italic gui=italic
 
 nnoremap ; :
 :command W w
@@ -119,7 +127,7 @@ nnoremap ; :
 
 set laststatus=2
 set mouse=a
-" set showtabline=2
+set showtabline=2
 
 " true colours
 set background=dark
@@ -133,7 +141,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme catppuccin
+colorscheme onedark
 
 "autocmd TextChanged,TextChangedI <buffer> silent write
 set nu rnu " relative line numbering
@@ -158,3 +166,16 @@ set hlsearch "highlights matching searches
 
 "Nerd tree
 nnoremap <f5> :NERDTreeToggle <Cr>
+" Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
+autocmd StdinReadPre * let s:std_in=1
+set statusline=...%{battery#component()}...
+set tabline=...%{battery#component()}...
+let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+let g:battery#update_tabline = 1    " For tabline.
+let g:battery#update_statusline = 1 " For statusline.
+set t_RV=
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+highlight iCursor guifg=white guibg=steelblue
+autocmd! FileType c,cpp,java,php call CSyntaxAfter()
