@@ -61,7 +61,10 @@ let maplocalleader = "\\"
 "split navigations
 nnoremap <C-B> :w <bar> :!g++ -Wall % -o a <Cr>
 nnoremap <C-Y> :%y+ <Cr>
+"Linux
 nnoremap <C-Q> :e ~/.config/nvim/init.vim <Cr>
+"Windows
+"nnoremap <C-Q> :e ~/Appdata/Local/nvim/init.vim <Cr>
 nnoremap <C-D> :e code/a.cpp <Cr>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
