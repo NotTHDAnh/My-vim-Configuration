@@ -17,7 +17,9 @@ Plug 'safv12/andromeda.vim'
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'p00f/cphelper.nvim'
-Plug 'ryanoasis/vim-devicons'
+Plug 'ghifarit53/tokyonight-vim'
+"Plug 'ryanoasis/vim-devicons'
+Plug 'folke/tokyonight.nvim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'manuelschiller/vim'
 Plug 'Rigellute/shades-of-purple.vim'
@@ -97,8 +99,8 @@ let g:airline_powerline_fonts = 1
 " unicode symbols
 let g:airline_left_sep = '◤'
 let g:airline_left_sep = '◤'
-let g:airline_right_sep = '◥'
-let g:airline_right_sep = '◥'
+let g:airline_right_sep = '◢'
+let g:airline_right_sep = '◢'
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
@@ -111,8 +113,8 @@ let g:airline_symbols.whitespace = 'Ξ'
 " airline symbols
 let g:airline_left_sep = '◤'
 let g:airline_left_alt_sep = '◤'
-let g:airline_right_sep = '◥'
-let g:airline_right_alt_sep = '◥'
+let g:airline_right_sep = '◢'
+let g:airline_right_alt_sep = '◢'
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
@@ -141,7 +143,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme onedark
+colorscheme tokyonight
 
 "autocmd TextChanged,TextChangedI <buffer> silent write
 set nu rnu " relative line numbering
@@ -154,7 +156,7 @@ set shortmess+=c
 set omnifunc=syntaxcomplete#Complete
 
 set backspace=indent,eol,start " let backspace delete over lines
-set autoindent " enable auto indentation of lines
+set autoindent " enabl auto indentation of lines
 set smartindent " allow vim to best-effort guess the indentation
 set pastetoggle=<F2> " enable paste mode
 
@@ -174,8 +176,10 @@ let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
 let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
 let g:battery#update_tabline = 1    " For tabline.
 let g:battery#update_statusline = 1 " For statusline.
+let g:airline_theme='tokyonight'
 set t_RV=
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
 highlight iCursor guifg=white guibg=steelblue
 autocmd! FileType c,cpp,java,php call CSyntaxAfter()
+
