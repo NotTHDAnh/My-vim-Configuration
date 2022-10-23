@@ -9,44 +9,50 @@
 "                               \_/__/                            
 
 call plug#begin('~/plugged')
-
-"Plug '907th/vim-auto-save'
-Plug 'edluffy/hologram.nvim'
-Plug 'lambdalisue/battery.vim'
-Plug 'safv12/andromeda.vim'
-Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
-Plug 'nvim-lua/plenary.nvim'
-Plug 'p00f/cphelper.nvim'
-Plug 'ghifarit53/tokyonight-vim'
-"Plug 'ryanoasis/vim-devicons'
-Plug 'folke/tokyonight.nvim'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'manuelschiller/vim'
-Plug 'Rigellute/shades-of-purple.vim'
-Plug 'stillwwater/vim-nebula'
-Plug 'voldikss/vim-floaterm'
-Plug 'SirVer/ultisnips'
-Plug 'tpope/vim-commentary'
-Plug 'honza/vim-snippets'
-Plug 'andweeb/presence.nvim'
-Plug 'joshdick/onedark.vim'
-"Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'dracula/vim'
-Plug 'preservim/nerdtree'
-Plug 'Erichain/vim-monokai-pro'
-Plug 'jiangmiao/auto-pairs'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-syntastic/syntastic'
-"Plug 'cj/vim-webdevicons'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tc50cal/vim-terminal'
-Plug 'Raimondi/delimitMate'
-Plug 'rafi/awesome-vim-colorschemes'
-Plug 'preservim/nerdcommenter'
-Plug 'tpope/vim-surround'
-"Plug 'ervandew/supertab'
+"{Plug '907th/vim-auto-save'
+    Plug 'Shatur/neovim-ayu'
+    Plug 'sainnhe/sonokai'
+    Plug 'connorholyday/vim-snazzy'
+    Plug 'MeF0504/vim-pets'
+    Plug 'murtaza-u/ez.nvim'
+    Plug 'edluffy/hologram.nvim'
+    Plug 'mangeshrex/everblush.vim'
+    Plug 'larsbs/vimterial_dark'
+    Plug 'lambdalisue/battery.vim'
+    Plug 'safv12/andromeda.vim'
+    Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'p00f/cphelper.nvim'
+    Plug 'ghifarit53/tokyonight-vim'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'folke/tokyonight.nvim'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'manuelschiller/vim'
+    Plug 'Rigellute/shades-of-purple.vim'
+    Plug 'stillwwater/vim-nebula'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'SirVer/ultisnips'
+    Plug 'tpope/vim-commentary'
+    Plug 'honza/vim-snippets'
+    Plug 'andweeb/presence.nvim'
+    Plug 'joshdick/onedark.vim'
+    "Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+    Plug 'sheerun/vim-polyglot'
+    Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'dracula/vim'
+    Plug 'preservim/nerdtree'
+    Plug 'Erichain/vim-monokai-pro'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-syntastic/syntastic'
+    "Plug 'cj/vim-webdevicons'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'tc50cal/vim-terminal'
+    Plug 'Raimondi/delimitMate'
+    Plug 'rafi/awesome-vim-colorschemes'
+    Plug 'preservim/nerdcommenter'
+    Plug 'tpope/vim-surround'
+"Plug 'ervandew/supertab}'
 
 call plug#end()
 
@@ -61,11 +67,11 @@ let maplocalleader = "\\"
 "split navigations
 nnoremap <C-B> :w <bar> :!g++ -Wall % -o a <Cr>
 nnoremap <C-Y> :%y+ <Cr>
+nnoremap <C-C> <Esc>
 "Linux
 nnoremap <C-Q> :e ~/.config/nvim/init.vim <Cr>
 "Windows
 "nnoremap <C-Q> :e ~/Appdata/Local/nvim/init.vim <Cr>
-nnoremap <C-D> :e code/a.cpp <Cr>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -135,6 +141,7 @@ set mouse=a
 set showtabline=2
 
 " true colours
+colorscheme sonokai
 set background=dark
 set t_Co=256
 
@@ -146,10 +153,15 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme tokyonight
 
 "autocmd TextChanged,TextChangedI <buffer> silent write
-set nu rnu " relative line numbering
+set nu rnu
+" augroup numbertoggle
+"     autocmd!
+"     autocmd BufEnter,FocusGained,InsertLeave * set rnu
+"     autocmd BufLeave,FocusLost,InsertEnter * set nornu
+" augroup END
+
 "set clipboard=unnamed " public copy/paste register
 set ruler
 set showcmd
@@ -179,10 +191,8 @@ let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
 let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
 let g:battery#update_tabline = 1    " For tabline.
 let g:battery#update_statusline = 1 " For statusline.
-let g:airline_theme='tokyonight'
+let g:airline_theme='sonokai'
 set t_RV=
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
 highlight iCursor guifg=white guibg=steelblue
-autocmd! FileType c,cpp,java,php call CSyntaxAfter()
-
